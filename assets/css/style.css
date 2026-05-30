@@ -85,44 +85,7 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.02em;
 }
 
-/* Custom Cursor (Visible only on pointer devices) */
-.custom-cursor {
-    width: 8px;
-    height: 8px;
-    background-color: var(--color-accent);
-    border-radius: 50%;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 9999;
-    transition: width 0.2s, height 0.2s, background-color 0.2s;
-}
 
-.custom-cursor-follower {
-    width: 32px;
-    height: 32px;
-    border: 1.5px solid var(--color-primary);
-    border-radius: 50%;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 9998;
-    transition: transform 0.08s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
-}
-
-/* Cursor Hover States */
-body.hovering-link .custom-cursor {
-    width: 12px;
-    height: 12px;
-    background-color: var(--color-primary);
-}
-
-body.hovering-link .custom-cursor-follower {
-    width: 48px;
-    height: 48px;
-    border-color: var(--color-accent);
-    background-color: rgba(245, 158, 11, 0.05);
-}
 
 /* Glow Background Orbs */
 .glow-bg {
@@ -149,6 +112,19 @@ body.hovering-link .custom-cursor-follower {
     background-color: var(--color-accent);
     bottom: -10%;
     right: -10%;
+}
+
+/* Ambient Grill Background Canvas */
+#grill-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.85;
 }
 
 /* Utility Layouts */
@@ -1600,9 +1576,5 @@ body.hovering-link .custom-cursor-follower {
     
     .lightbox-nav.next {
         right: 15px;
-    }
-    
-    .custom-cursor, .custom-cursor-follower {
-        display: none; /* Disable cursor modifications on touch devices */
     }
 }
