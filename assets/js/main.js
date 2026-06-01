@@ -96,22 +96,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // 6. Pre-select Franchise dropdown model
+    // 6. Pre-select Franchise -> WhatsApp redirect
     const planButtons = document.querySelectorAll(".plan-btn");
-    const dropdownSelect = document.getElementById("form-plan");
 
     planButtons.forEach((btn) => {
         btn.addEventListener("click", (e) => {
+            e.preventDefault();
             const selectedPlan = btn.getAttribute("data-plan");
-            if (dropdownSelect && selectedPlan) {
-                // Find matching option
-                for (let i = 0; i < dropdownSelect.options.length; i++) {
-                    if (dropdownSelect.options[i].value.includes(selectedPlan) || selectedPlan.includes(dropdownSelect.options[i].value)) {
-                        dropdownSelect.selectedIndex = i;
-                        break;
-                    }
-                }
-            }
+            const waUrl = `https://wa.me/919822042234?text=Hi!%20I%20am%20interested%20in%20the%20Delhi%20Chaap%20Express%20franchise%20model:%20${encodeURIComponent(selectedPlan)}.%20Please%20share%20more%20details.`;
+            window.open(waUrl, "_blank", "noopener,noreferrer");
         });
     });
 
@@ -302,6 +295,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         gsap.to(".franchise-section .section-header", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" });
                         gsap.to(".plan-card-3d", { opacity: 1, y: 0, stagger: 0.2, duration: 1, ease: "power4.out" });
                     } 
+                    else if (section.id === "outlets") {
+                        gsap.to(".outlets-section .section-header", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" });
+                        gsap.to(".outlets-info", { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" });
+                    }
                     else if (section.id === "gallery") {
                         gsap.to(".gallery-section .section-header", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" });
                         gsap.to(".gallery-item", { opacity: 1, scale: 1, stagger: 0.08, duration: 0.8, ease: "power2.out" });
@@ -327,6 +324,9 @@ document.addEventListener("DOMContentLoaded", () => {
         gsap.set(".franchise-section .section-header", { opacity: 0, y: 30 });
         gsap.set(".plan-card-3d", { opacity: 0, y: 60 });
         
+        gsap.set(".outlets-section .section-header", { opacity: 0, y: 30 });
+        gsap.set(".outlets-info", { opacity: 0, x: -40 });
+
         gsap.set(".gallery-section .section-header", { opacity: 0, y: 30 });
         gsap.set(".gallery-item", { opacity: 0, scale: 0.9 });
         
@@ -337,72 +337,130 @@ document.addEventListener("DOMContentLoaded", () => {
         gsap.set(".contact-form-area", { opacity: 0, x: 40 });
 
         // Bind sections to observer
-        const observedSections = ["about", "franchise", "gallery", "founder", "contact"];
+        const observedSections = ["about", "franchise", "outlets", "gallery", "founder", "contact"];
         observedSections.forEach(id => {
             const sec = document.getElementById(id);
             if (sec) revealObserver.observe(sec);
         });
-    }
 
+        // 9b. Outlets 3D Card Stack Gallery Manual Slide Transitions
+        const outletCards = gsap.utils.toArray(".stack-card");
+        const stackContainer = document.getElementById("outlet-stack");
+        
+        if (outletCards.length > 0) {
+            let activeIdx = 0;
 
-    // 10. Form Submission Mock Handling
-    const inquiryForm = document.getElementById("inquiry-form");
-    const formSuccess = document.getElementById("form-success");
-    const submitBtn = document.getElementById("submit-btn");
-    const resetFormBtn = document.getElementById("reset-form-btn");
+            // Render function to update all card positions smoothly using GSAP
+            function updateStackPositions(animate = true) {
+                // Update current counter text indicator
+                const currentIndicator = document.querySelector("#stack-counter .current");
+                if (currentIndicator) {
+                    currentIndicator.textContent = activeIdx + 1;
+                }
 
-    if (inquiryForm && formSuccess && submitBtn) {
-        inquiryForm.addEventListener("submit", (e) => {
-            e.preventDefault(); // stop browser reload
+                outletCards.forEach((card, idx) => {
+                    // Check relationship to activeIdx
+                    if (idx < activeIdx) {
+                        // Swiped away to the left
+                        gsap.to(card, {
+                            xPercent: -130,
+                            rotation: -15,
+                            opacity: 0,
+                            scale: 0.8,
+                            y: 0,
+                            z: 0,
+                            duration: animate ? 0.6 : 0,
+                            ease: "power2.out",
+                            overwrite: "auto"
+                        });
+                    } else {
+                        // Positioned in the stack
+                        const depth = idx - activeIdx;
+                        gsap.to(card, {
+                            xPercent: 0,
+                            rotation: 0,
+                            y: -depth * 16,
+                            z: -depth * 40,
+                            scale: 1 - depth * 0.04,
+                            opacity: depth === 0 ? 1 : Math.max(0.2, 1 - depth * 0.12),
+                            duration: animate ? 0.6 : 0,
+                            ease: "power2.out",
+                            overwrite: "auto"
+                        });
+                    }
+                });
+            }
+
+            // Initialize stack positions without animation
+            updateStackPositions(false);
+
+            // Manual Navigation Buttons & Chevron click event handlers
+            const prevBtn = document.getElementById("stack-prev");
+            const nextBtn = document.getElementById("stack-next");
+            const arrowPrevBtn = document.getElementById("stack-arrow-prev");
+            const arrowNextBtn = document.getElementById("stack-arrow-next");
+
+            function nextCard() {
+                if (activeIdx < outletCards.length - 1) {
+                    activeIdx++;
+                    updateStackPositions(true);
+                } else {
+                    // Wrap back around to card 1
+                    activeIdx = 0;
+                    updateStackPositions(true);
+                }
+            }
+
+            function prevCard() {
+                if (activeIdx > 0) {
+                    activeIdx--;
+                    updateStackPositions(true);
+                } else {
+                    // Wrap around to card 9
+                    activeIdx = outletCards.length - 1;
+                    updateStackPositions(true);
+                }
+            }
+
+            if (nextBtn) nextBtn.addEventListener("click", nextCard);
+            if (arrowNextBtn) arrowNextBtn.addEventListener("click", nextCard);
+            if (prevBtn) prevBtn.addEventListener("click", prevCard);
+            if (arrowPrevBtn) arrowPrevBtn.addEventListener("click", prevCard);
+
+            // Click active card itself to flip to the next card
+            outletCards.forEach((card, idx) => {
+                card.addEventListener("click", () => {
+                    if (idx === activeIdx) {
+                        nextCard();
+                    }
+                });
+            });
+
+            // Touch Drag/Swipe support on mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
             
-            // Add loading state
-            submitBtn.classList.add("loading");
-            const btnSpan = submitBtn.querySelector("span");
-            const btnIcon = submitBtn.querySelector("i");
+            stackContainer.addEventListener("touchstart", (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
             
-            const originalText = btnSpan.innerText;
-            btnSpan.innerText = "Submitting...";
-            btnIcon.className = "fa-solid fa-circle-notch fa-spin";
-
-            // Mock network call (1.5 seconds)
-            setTimeout(() => {
-                // Reset submit button state
-                submitBtn.classList.remove("loading");
-                btnSpan.innerText = originalText;
-                btnIcon.className = "fa-solid fa-paper-plane";
-
-                // Fade out form and fade in success card
-                inquiryForm.style.display = "none";
-                formSuccess.style.display = "flex";
+            stackContainer.addEventListener("touchend", (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diffX = touchStartX - touchEndX;
                 
-                setTimeout(() => {
-                    formSuccess.classList.add("active");
-                }, 50);
-
-                // Log form values to console for validation representation
-                console.log("Inquiry dispatched to delhichaapexpress@gmail.com successfully:");
-                console.log("Name:", document.getElementById("form-name").value);
-                console.log("Phone:", document.getElementById("form-phone").value);
-                console.log("Email:", document.getElementById("form-email").value);
-                console.log("City:", document.getElementById("form-city").value);
-                console.log("Model:", document.getElementById("form-plan").value);
-                console.log("Message:", document.getElementById("form-message").value);
-                
-                // Reset form values
-                inquiryForm.reset();
-            }, 1500);
-        });
+                if (Math.abs(diffX) > 60) {
+                    if (diffX > 0) { // Swipe left -> next
+                        nextCard();
+                    } else { // Swipe right -> prev
+                        prevCard();
+                    }
+                }
+            }, { passive: true });
+        }
     }
 
-    if (resetFormBtn && inquiryForm && formSuccess) {
-        resetFormBtn.addEventListener("click", () => {
-            formSuccess.classList.remove("active");
-            setTimeout(() => {
-                formSuccess.style.display = "none";
-                inquiryForm.style.display = "block";
-            }, 400);
-        });
-    }
+
+
 
     // 11. Ambient Grill Coal and Ash Particles Background
     const canvas = document.getElementById("grill-canvas");
