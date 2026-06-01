@@ -663,4 +663,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         animate();
     }
+
+    // 12. Video Loop Fallback Trigger (Ensures seamless repeating across all browsers)
+    const bgVideo = document.getElementById("bg-video");
+    if (bgVideo) {
+        bgVideo.addEventListener("ended", () => {
+            bgVideo.currentTime = 0;
+            bgVideo.play().catch(err => console.log("Video auto-loop play prevented:", err));
+        });
+    }
 });
