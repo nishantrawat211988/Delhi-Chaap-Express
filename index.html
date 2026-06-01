@@ -16,6 +16,16 @@
 </head>
 <body>
 
+    <!-- Looping Video Background -->
+    <div class="video-bg-container">
+        <video autoplay loop muted playsinline class="video-bg" id="bg-video">
+            <source src="assets/videos/fire-night-dark-heat-glare-236703.mp4" type="video/mp4">
+            <source src="assets/videos/grill_background.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
     <!-- Glowing Background Effects -->
     <div class="glow-bg glow-green"></div>
     <div class="glow-bg glow-yellow"></div>
@@ -33,6 +43,7 @@
             <nav class="nav-links">
                 <a href="#about" class="nav-link">Our Story</a>
                 <a href="#franchise" class="nav-link">Franchise Models</a>
+                <a href="#outlets" class="nav-link">Our Outlets</a>
                 <a href="#gallery" class="nav-link">Gallery</a>
                 <a href="#founder" class="nav-link">The Founder</a>
                 <a href="#contact" class="btn btn-primary nav-btn">Inquire Now</a>
@@ -45,6 +56,7 @@
         <div class="mobile-nav" id="mobile-nav">
             <a href="#about" class="mobile-nav-link">Our Story</a>
             <a href="#franchise" class="mobile-nav-link">Franchise Models</a>
+            <a href="#outlets" class="mobile-nav-link">Our Outlets</a>
             <a href="#gallery" class="mobile-nav-link">Gallery</a>
             <a href="#founder" class="mobile-nav-link">The Founder</a>
             <a href="#contact" class="btn btn-primary mobile-nav-btn">Inquire Now</a>
@@ -273,6 +285,109 @@
         </div>
     </section>
 
+    <!-- Physical Outlets Stack Gallery -->
+    <section class="outlets-section" id="outlets">
+        <div class="section-container">
+            <div class="outlets-grid">
+                <div class="outlets-info">
+                    <span class="section-subtitle">Real Outlets in Action</span>
+                    <h2 class="section-title">Step Inside Our <br><span class="text-gradient">Live Outlets</span></h2>
+                    <div class="header-line" style="margin: 0; margin-bottom: 24px;"></div>
+                    <p class="outlets-desc">
+                        Explore the high-footfall, premium street-side layout of Delhi Chaap Express outlets. Designed for maximum attention, efficient live counter operations, and beautiful branded lighting.
+                    </p>
+                    <div class="outlets-nav-info">
+                        <span class="nav-scroll-hint"><i class="fa-solid fa-hand-pointer"></i> Use arrows or swipe/click photos to explore</span>
+                        <div class="stack-controls">
+                            <button class="stack-btn prev-btn" id="stack-prev" aria-label="Previous Photo"><i class="fa-solid fa-arrow-left"></i></button>
+                            <span class="stack-counter" id="stack-counter"><span class="current">1</span> / <span class="total">9</span></span>
+                            <button class="stack-btn next-btn" id="stack-next" aria-label="Next Photo"><i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="outlets-gallery-wrapper">
+                    <button class="stack-arrow-btn prev" id="stack-arrow-prev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="stack-container" id="outlet-stack">
+                        <!-- Card 1 -->
+                        <div class="stack-card" data-index="0">
+                            <img src="assets/images/outlet_1.jpg" alt="Delhi Chaap Express Seating and Outdoor Sign">
+                            <div class="card-caption">
+                                <h4>Outdoor Seating & Brand Sign</h4>
+                                <p>Illuminated Delhi Chaap Express banner and evening dining area</p>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="stack-card" data-index="1">
+                            <img src="assets/images/outlet_2.jpg" alt="Indoor Seating Layout with designer chairs">
+                            <div class="card-caption">
+                                <h4>Indoor Dining Space</h4>
+                                <p>Premium interior branding with modern, vibrant seating layout</p>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="stack-card" data-index="2">
+                            <img src="assets/images/outlet_3.jpg" alt="Delhi Chaap Express Live Counter decorated with balloons">
+                            <div class="card-caption">
+                                <h4>Live Kitchen Counter</h4>
+                                <p>Grand opening setup decorated with signature yellow & black balloon pillars</p>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="stack-card" data-index="3">
+                            <img src="assets/images/outlet_4.jpg" alt="Tandoor counter close-up with marinated skewers">
+                            <div class="card-caption">
+                                <h4>Tandoori Grill Cabinet</h4>
+                                <p>Close-up view of fresh marinated skewers ready for grilling</p>
+                            </div>
+                        </div>
+                        <!-- Card 5 -->
+                        <div class="stack-card" data-index="4">
+                            <img src="assets/images/outlet_5.jpg" alt="Co-branded counter with Goofy Momos and Chinese">
+                            <div class="card-caption">
+                                <h4>Co-Branded Model</h4>
+                                <p>Optimized dual kitchen structure for Delhi Chaap & Goofy Momos</p>
+                            </div>
+                        </div>
+                        <!-- Card 6 -->
+                        <div class="stack-card" data-index="5">
+                            <img src="assets/images/outlet_6.jpg" alt="Street front counter with balloon gate and tree lights">
+                            <div class="card-caption">
+                                <h4>Street Front Kiosk</h4>
+                                <p>High footfall evening layout featuring warm wrapped tree lights</p>
+                            </div>
+                        </div>
+                        <!-- Card 7 -->
+                        <div class="stack-card" data-index="6">
+                            <img src="assets/images/outlet_7.jpg" alt="Large tandoori display showcase">
+                            <div class="card-caption">
+                                <h4>Skewers Display Showcase</h4>
+                                <p>Mouthwatering variety of soya chaap marinated to perfection</p>
+                            </div>
+                        </div>
+                        <!-- Card 8 -->
+                        <div class="stack-card" data-index="7">
+                            <img src="assets/images/outlet_8.jpg" alt="Roadside night view of Delhi Chaap Express kiosk">
+                            <div class="card-caption">
+                                <h4>Night Roadside Kiosk</h4>
+                                <p>Premium LED glow banner attracting commuters and late-night foodies</p>
+                            </div>
+                        </div>
+                        <!-- Card 9 -->
+                        <div class="stack-card" data-index="8">
+                            <img src="assets/images/outlet_9.jpg" alt="Solapur outlet kiosk Raj Savji">
+                            <div class="card-caption">
+                                <h4>Raj Savji Solapur Outlet</h4>
+                                <p>Fully functional franchise showcase operating in Solapur region</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="stack-arrow-btn next" id="stack-arrow-next" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Visual Menu Gallery -->
     <section class="gallery-section" id="gallery">
         <div class="section-container">
@@ -408,7 +523,7 @@
         </div>
     </section>
 
-    <!-- Inquiry / Contact Form Section -->
+    <!-- Inquiry / Contact Section -->
     <section class="contact-section" id="contact">
         <div class="section-container">
             <div class="contact-grid">
@@ -416,10 +531,17 @@
                     <span class="contact-subtitle">Start Your Journey</span>
                     <h2 class="contact-title">Let's Build Something Delicious Together</h2>
                     <p class="contact-desc">
-                        Have questions about location setup, supply chain logistics, or recipe sharing? Fill out the application form, and our franchise development team will reach out within 24 hours.
+                        Have questions about location setup, supply chain logistics, or recipe sharing? Tap the WhatsApp button to chat directly with our franchise manager, or reach out via email.
                     </p>
                     
                     <div class="contact-cards">
+                        <div class="contact-card">
+                            <div class="cc-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                            <div class="cc-details">
+                                <span class="cc-label">WhatsApp Us</span>
+                                <span class="cc-value">+91 98220 42234</span>
+                            </div>
+                        </div>
                         <div class="contact-card">
                             <div class="cc-icon"><i class="fa-solid fa-envelope"></i></div>
                             <div class="cc-details">
@@ -438,58 +560,19 @@
                 </div>
 
                 <div class="contact-form-area">
-                    <form class="inquiry-form" id="inquiry-form">
-                        <h3 class="form-heading">Franchise Application Form</h3>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="form-name">Full Name <span class="req">*</span></label>
-                                <input type="text" id="form-name" placeholder="John Doe" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="form-phone">Phone Number <span class="req">*</span></label>
-                                <input type="tel" id="form-phone" placeholder="+91 98765 43210" required>
-                            </div>
+                    <div class="cta-card">
+                        <div class="whatsapp-logo-wrapper">
+                            <i class="fa-brands fa-whatsapp"></i>
                         </div>
-
-                        <div class="form-group">
-                            <label for="form-email">Email Address <span class="req">*</span></label>
-                            <input type="email" id="form-email" placeholder="john@example.com" required>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="form-city">Proposed City <span class="req">*</span></label>
-                                <input type="text" id="form-city" placeholder="e.g., Pune, Mumbai, Nashik" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="form-plan">Franchise Model <span class="req">*</span></label>
-                                <select id="form-plan" required>
-                                    <option value="" disabled selected>Select Model</option>
-                                    <option value="Pune Region (1.5 Lakh)">Pune Region - ₹ 1.5 Lakh</option>
-                                    <option value="Outside Pune (2 Lakh)">Outside Pune - ₹ 2.0 Lakh (Recipe Sharing)</option>
-                                    <option value="General Inquiry">General Franchise Inquiry</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="form-message">Tell Us About Your Location / Background</label>
-                            <textarea id="form-message" rows="4" placeholder="Briefly describe your proposed location size, street prominence, or food retail experience..."></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-block submit-btn" id="submit-btn">
-                            <span>Submit Application</span>
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
-                    </form>
-                    
-                    <!-- Form Success Message -->
-                    <div class="form-success-card" id="form-success">
-                        <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
-                        <h3>Application Submitted!</h3>
-                        <p>Thank you for your interest in Delhi Chaap Express. Your application details have been sent to <strong>delhichaapexpress@gmail.com</strong>. Our franchise manager will review them and contact you via phone or email shortly.</p>
-                        <button class="btn btn-secondary" id="reset-form-btn">Back to Form</button>
+                        <h3 class="cta-card-heading">WhatsApp Inquiry</h3>
+                        <p class="cta-card-desc">
+                            Chat directly with us to check local slot availability, territory protection, and recipe sharing details. We are active to guide your setup!
+                        </p>
+                        <a href="https://wa.me/919822042234?text=Hi!%20I%20am%20interested%20in%20the%20Delhi%20Chaap%20Express%20franchise.%20Please%20share%20more%20details." target="_blank" rel="noopener noreferrer" class="btn btn-accent btn-lg btn-block whatsapp-btn">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>Chat on WhatsApp</span>
+                        </a>
+                        <span class="whatsapp-num-label">WhatsApp Number: <strong>+91 98220 42234</strong></span>
                     </div>
                 </div>
             </div>
